@@ -1,0 +1,53 @@
+.user__sold-products {
+  position: relative;
+  width: 100%;
+}
+
+.user__sold-product-img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.user__sold-card{
+  transition: .5s ease;
+  opacity: 1;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.user__sold-products:hover .user__sold-product-img {
+  opacity: 0.85;
+}
+
+
+.sold-images-container:hover .sold-image-sign {
+  opacity: 1;
+}
+
+.user__sold-sign {
+  color: #fff51d;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 16px 32px;
+}
+
+.img-hover:hover {
+  opacity: 0.85;
+ }
+
+
+.banner {
+  width: 100%;
+}
+
+.home-img-1, .home-img-2 {
+  width: 40rem;
+  height: 50rem;
+}

@@ -1,0 +1,250 @@
+<main class="product">
+
+  <div class="product__container">
+    <figure class="product__image">
+      <%= cl_image_tag @product.photo.key.to_s, height: 640, width: 640, crop: :fill %>
+    </figure>
+
+    <div class="product__box">
+      <div class="product__seller">
+        <div class="product__seller-img">
+          <%= link_to @product.user do %>
+            <%= cl_image_tag @product.user.photo.key.to_s, :transformation=>[{:gravity=>"face", :height=>60, :width=>60},
+                {:radius=>"max"},{:width=>60, :crop=>"scale"},{:fetch_format=>:auto}] %>
+          <% end %>
+        </div>
+        <div class="product__seller-details">
+          <span class="product__seller-username"><%= @product.user.username %></span>
+          <span class="product__seller-location"><%= "#{@product.city.capitalize}, #{@product.country.capitalize}"  %></span>
+          <div class="user__ratings"  data-reviews-target="content">
+            <% ratings = [] %>
+            <% @product.user.reviewers.uniq.each do |reviewer| %>
+              <% reviewer.orders.each do |order| %>
+              <% if order.review != nil %>
+              <% ratings << order.review.rating %>
+              <% end %>
+              <% end %>
+              <% end %>
+
+              <% if ratings.sum === 0 %>
+              <%= render "shared/star_rating_0" %>
+              <% else %>
+              <% average = ratings.sum / ratings.length %>
+              <% if average <= 1  %>
+              <%= render "shared/star_rating_1" %>
+              <% elsif average > 1 && average <= 2 %>
+              <%= render "shared/star_rating_2" %>
+              <% elsif average > 2 && average <= 3 %>
+              <%= render "shared/star_rating_3" %>
+              <% elsif average > 3 && average <= 4 %>
+              <%= render "shared/star_rating_4" %>
+              <% else %>
+              <%= render "shared/star_rating_5" %>
+              <% end %>
+              <% end %>
+            <span class="user__ratings-count"><%= "(#{ratings.count })" %></span>
+          </div>
+        </div>
+      </div>
+
+      <%= render "shared/activity" %>
+
+      <div class="product__icons">
+        <div class="product__likes">
+          <% if @likes.empty? %>
+            <div class="product__like">
+              <%= form_with model: [@product, @like] do |f| %>
+              <%= f.button '', {class: 'btn btn--like'} do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--like">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="product__unlike">
+              <%= link_to like_path(@likes.last), class: "btn btn--unlike",  data: {turbo_method: :delete} do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--unlike">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="product__bookmarks">
+          <% if @bookmarks.empty? %>
+            <div class="product_bookmark">
+              <%= form_with model: [@product, @bookmark] do |f| %>
+              <%= f.button '', {class: 'btn btn--bookmark'} do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--bookmark">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+              </svg>
+              <% end %>
+              <% end %>
+            </div>
+          <% else %>
+          <div class="product__unbookmark">
+            <%= link_to bookmark_path(@bookmarks.last), class: "btn btn--unbookmark",  data: {turbo_method: :delete} do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon-unbookmark">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+              </svg>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="product__messages">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon-message">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        </div>
+
+      </div>
+
+      <%# Product Likes Count %>
+      <div class="product__likes">
+        <% if @product.likes.count === 1 %>
+          <span class="product__likes-count"><%= @product.likes.count %> like</span>
+        <% elsif @product.likes.count > 1 %>
+          <span class="product__likes-count"><%= @product.likes.count %> likes</span>
+        <% end %>
+      </div>
+
+      <div class="product__details">
+        <h2 class="product__title"><%= @product.title%></h2>
+        <h2 class="product__price">£<%= @product.price%></h2>
+      </div>
+
+      <div class="product__buttons">
+        <% if @product.sold === false %>
+          <% @added_to_cart = @product.purchases.where(user_id: current_user.id) %>
+            <% if @added_to_cart.empty? && @product.user != current_user %>
+              <div class="product__buy-now">
+                <%= simple_form_for [@product, @order] do |f| %>
+                <%= f.submit "Buy now", {class: "btn btn--product btn--buy"}  %>
+                <% end %>
+              </div>
+              <div class="product__add-to-bag">
+                <%= form_with model: [@product, @purchase] do |f| %>
+                <%= f.submit "Add to bag", {class: "btn btn--product btn--add-to-bag"} %>
+                <% end %>
+              </div>
+            <% elsif @added_to_cart.empty? === false && @product.user != current_user %>
+              <span class="btn btn--product btn--added-to-bag">&#10003;Added to bag</span>
+            <% else %>
+            <% end %>
+          <% if @product.user === current_user %>
+            <%= link_to edit_product_path(@product) do %>
+              <button class="btn btn--product btn--edit-product">Edit Product</button>
+            <% end %>
+            <%= link_to product_path(@product), data: {turbo_method: :delete} do %>
+              <button class="btn btn--product btn--delete-product">Delete</button>
+            <% end %>
+          <% end %>
+
+        <% else %>
+          <% if @product.user === current_user %>
+            <%= link_to product_path(@product), data: {turbo_method: :delete} do %>
+              <button class="btn btn--product btn--delete-product">Delete</button>
+          <% end %>
+          <% end %>
+          <div class="product__sold">Sold</div>
+        <% end %>
+      </div>
+
+      <div class="product__protection">
+        <div class="product__protection-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--protection">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <div class="product__protection-banner">
+          <p class="product__protection-text"> All purchases through Depop are <br> covered by Buyer Protection.</p>
+          <a href="#">Learn more</a>
+        </div>
+      </div>
+
+      <%= render "shared/pay_icons" %>
+
+      <table class="product__description">
+        <tr>
+          <th>Size</th>
+          <th><%= @product.size %></th>
+        </tr>
+        <tr>
+          <th>Brand</th>
+          <th><%= @product.brand %></th>
+        </tr>
+        <tr>
+          <th>Condition</th>
+          <th><%= @product.condition %></th>
+        </tr>
+        <% if @product.styles != "[\"\"]" && @product.styles != nil %>
+        <tr>
+          <th>Style</th>
+          <% @style = @product.styles.delete('"[""""""]"') %>
+          <th><%= @style.delete_prefix(",") %></th>
+        </tr>
+        <% end %>
+        <% if @product.colours != "[\"\"]" && @product.colours != nil %>
+        <tr>
+          <th>Colour</th>
+          <% @colours = @product.colours.delete('"[""""""]"","') %>
+          <th><%= @colours.split(' ')[1]%> <%= @colours.split(' ')[3] %></th>
+        </tr>
+        <% end %>
+      </table>
+
+
+      <div class="product__information">
+        </p><% @product.description.split("\n").each do |t| %></p>
+          <%= t %>
+        <% end %>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+  <div class="more__products">
+    <div>
+      <h3>More from this seller</h3>
+      <div class="more__products-grid">
+        <% @product.user.products.last(6).each do |product| %>
+          <div class="more__products-card">
+            <%= link_to product_path(product) do %>
+              <%= cl_image_tag product.photo.key.to_s, height: 200, width: 200, crop: :fill%>
+            <% end %>
+            <div class="more__products-details">
+              <span><strong><%= "£#{product.price}" %></strong></span>
+              <span><%= product.size %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h3>You might also like</h3>
+        <div class="more__products-grid">
+          <% @products = Product.where(category: @product.category, gender: @product.gender, styles: @product.styles ) %>
+          <% @product.user.products.last(6).each do |product| %>
+            <div class="more__products-card">
+              <%= link_to product_path(product) do %>
+                <%= cl_image_tag product.photo.key.to_s, height: 200, width: 200, crop: :fill%>
+             <% end %>
+              <div class="more__products-details">
+                <span><strong><%= "£#{product.price}" %></strong></span>
+                <span><%= product.size %></span>
+             </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+
+
+
+
+</main>

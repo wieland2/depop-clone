@@ -1,0 +1,37 @@
+// Configuration
+@import "config/variables";
+@import "tom-select/dist/scss/tom-select";
+@import "star-rating.js/dist/star-rating.css";
+
+
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome";
+@import "components/alert";
+@import "components/alert";
+@import "components/navbar";
+@import "home";
+@import "components/buttons";
+@import "components/search_bar";
+@import "components/icons";
+@import "pages/follows";
+@import "pages/user";
+@import "pages/bag";
+@import "pages/home_page";
+@import "pages/orders";
+@import "pages/product";
+@import "pages/pay";
+@import "components/table";
+@import "components/grids";
+@import "components/forms";
+@import "components/review";
+@import "components/feedback_box";
+@import "components/upload_photo";
+@import "components/img";
+@import "components/footer";
+@import "components/follow_box";
+@import "components/login_form";
+@import "components/empty";
+// Font
+
+
+@import url(//db.onlinewebfonts.com/c/879269be836bf8d970d4ef4fb0e54f42?family=GT+America+Extended);

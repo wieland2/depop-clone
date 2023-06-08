@@ -1,0 +1,51 @@
+<div class="user__feedbacks d-none">
+  <div class="user__feedbacks-top">
+    <h2>Feedback for <%= "@#{@user.username}"%></h2>
+    <div class="closeWindow"  data-review-target="closeContent">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon-cross icon--close">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="user__feedbacks-sold-tab">
+      <span>Sold</span>
+  </div>
+
+  <div class="user__feedbacks-box">
+    <% if @user.reviewers.empty? %>
+    <div class="user__feedbacks-empty">
+      <span> <%= "@#{@user.username} hasn't had any reviews yet." %> </span>
+    </div>
+    <% else %>
+      <% @user.reviewers.uniq.each do |reviewer| %>
+        <% reviewer.orders.each do |order| %>
+          <% if order.review != nil %>
+            <div class="user__feedbacks-card">
+              <div class="user__feedbacks-reviewer-img">
+                <%= cl_image_tag order.product.photo.key.to_s, height: 150, width: 150, crop: :fill %>
+              </div>
+              <div class="user__feedbacks-reviewer-details">
+                <span class="user__feedbacks-reviewer-username"><%= "@#{reviewer.username}" %></span>
+                <div class="user__feedbacks-rating">
+                  <% if order.review.rating === 1  %>
+                  <%= render "shared/star_rating_1" %>
+                  <% elsif order.review.rating === 2 %>
+                  <%= render "shared/star_rating_2" %>
+                  <% elsif order.review.rating === 3 %>
+                  <%= render "shared/star_rating_3"  %>
+                  <% elsif order.review.rating === 4 %>
+                  <%= render "shared/star_rating_4"  %>
+                  <% else %>
+                  <%= render "shared/star_rating_5" %>
+                  <% end %>
+                </div>
+                <span class="user__feedbacks-reviewer-content"><%= order.review.content %></span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+  </div>
+  <% end %>
+</div>

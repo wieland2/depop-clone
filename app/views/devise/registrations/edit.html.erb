@@ -1,0 +1,78 @@
+<div class="form__user-settings">
+
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),  html: { method: :put , data: {controller: "user-photo-preview"}} )  do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  <div class="new__product-img">
+    <h2>Upload a photo</h2>
+    <span> Upload a photo in JPEG or PNG format</span>
+      <div class="new__product-preview-image-card">
+          <div class="product-preview-image-card"><%= image_tag current_user.photo, width: 300, data: { user_photo_preview_target: "preview"} %></div>
+      </div>
+     <%= f.input :photo, required: false, input_html: { class: 'd-none', data: { user_photo_preview_target: "input", action:"change->user-photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label:  "Upload a photo"  %>
+  </div>
+
+
+    <%= f.input :email, required: false, autofocus: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+
+
+
+
+
+
+
+    <div class="sign__up-names">
+      <%= f.input :first_name,
+                    required: false,
+                    autofocus: false,
+                    input_html: { autocomplete: "first name" }%>
+      <%= f.input :last_name,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "last name" }%>
+      </div>
+    <%= f.input :bio,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "last name" }%>
+
+    <%= f.input :location,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "last name" }%>
+
+
+    <%= f.input :password,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password,
+                hint: "we need your current password to confirm your changes",
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", {class: "btn btn--product"} %>
+  </div>
+<% end %>
+
+
+<%#
+<%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+
+
+
+
+
+</div>

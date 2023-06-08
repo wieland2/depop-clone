@@ -1,0 +1,90 @@
+.icon {
+  width: 2.4rem;
+  color: $light-black;
+}
+
+.icon--like {
+  fill: transparent;
+
+  &:active {
+    transform: translateY(-10%);
+  }
+
+}
+
+.icon--unlike {
+  fill: red;
+  color: red;
+}
+
+.icon--pay {
+  width: 3.4rem;
+}
+
+.icon--white {
+  fill: transparent;
+  color: white;
+
+
+  &:active {
+    transform: translateY(-10%);
+  }
+}
+
+.icon--transparent {
+  fill: white;
+  opacity: 0.9;
+  color: white
+
+}
+
+.icon--bolt,
+.icon--tag {
+  fill: $blue;
+  color: $blue;
+  width: 1.9rem;
+}
+
+.icon-unbookmark {
+  fill: rgb(38, 38, 38);
+}
+
+.icon--bookmark {
+
+  &:active {
+    transform: translateY(-10%);
+  }
+}
+
+.icon--protection {
+  width: 3.5rem;
+}
+
+.icon--trash {
+  width: 2rem;
+  margin-left: -.2rem;
+}
+
+.icon--checkmark {
+  width: 4rem;
+}
+
+.icon--home {
+  width: 4rem;
+}
+
+
+.icon--star {
+  width: 1.4rem;
+
+  &-red {
+    fill: red;
+    color: red;
+  }
+
+  &-gray {
+    fill: gray;
+    color: gray;
+  }
+
+}

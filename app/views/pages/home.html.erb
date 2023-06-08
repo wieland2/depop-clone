@@ -1,0 +1,153 @@
+<main class="home">
+
+  <div class="home__banner">
+    <div class="home__banner-img">
+      <%= image_tag("banner.jpg", class: "banner")%>
+    </div>
+    <div class="home__banner-button">
+      <%= link_to products_path do %>
+        <button class="btn btn--banner">Shop Now</button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="home__recently-added">
+    <div class="home__recently-added-heading">
+      <h2>Recently added</h2>
+     <%= link_to "See more", products_path %>
+    </div>
+    <div class="home__recently-added-products">
+      <% @products.where(sold: false).last(6).each do |product| %>
+        <div class="home__recently-added-product">
+          <%= link_to product_path(product) do %>
+            <div class="homer__recently-added-product-img img-hover">
+              <%= cl_image_tag product.photo.key, height: 176, width: 176, crop: :fill%>
+            </div>
+          <% end %>
+          <div class="home__recently-added-product-details">
+            <span><strong><%= "£#{product.price}" %></strong></span>
+            <span><%= product.size %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="home__festival">
+    <div class="home__festival-heading">
+      <h2>Festival on Depop</h2>
+    </div>
+    <div class="home__festival-products">
+      <div class="home__festival-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 265, width: 265, crop: :fill%></a>
+        <span>Jeans</span>
+      </div>
+      <div class="home__festival-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 265, width: 265, crop: :fill%></a>
+        <span>Jeans</span>
+      </div>
+      <div class="home__festival-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 265, width: 265, crop: :fill%></a>
+        <span>Jeans</span>
+      </div>
+      <div class="home__festival-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 265, width: 265, crop: :fill%></a>
+        <span>Jeans</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="home__top-searches">
+    <div class="home__top-searches-heading">
+      <h2>Top searches this week</h2>
+    </div>
+    <div class="home__top-searches-products">
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>Tops</span>
+      </div>
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>Jeans</span>
+      </div>
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>Jackets</span>
+      </div>
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>T-shirts</span>
+      </div>
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>Suits</span>
+      </div>
+      <div class="home__top-searches-product">
+        <a href="#" class="img-hover"><%= cl_image_tag @products.find(1).photo.key, height: 170, width: 170, crop: :fill, :radius=>"max"%></a>
+        <span>Coats</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="home__depop-edition">
+    <div class="home__depop-edition-heading">
+      <h2>The Depop Edit</h2>
+      <span>Items we love, updated daily</span>
+    </div>
+    <div class="home__depop-edition-products">
+      <% @products.where(sold: false).sample(12).each do |product| %>
+        <div class="home__depop-edition-product">
+          <%= link_to product_path(product) do %>
+            <div class="homer__depop-edition-product-img img-hover">
+              <%= cl_image_tag product.photo.key, height: 176, width: 176, crop: :fill%>
+            </div>
+          <% end %>
+          <div class="home__depop-edition-product-details">
+            <span><strong><%= "£#{product.price}" %></strong></span>
+            <span><%= product.size %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="home__narrative-card">
+    <div class="home__narrative-card-img">
+      <%= image_tag("homepage-img-1.jpg", class: "home-img-1")%>
+    </div>
+    <div class="home__narrative-card-description">
+      <h2>Find your style</h2>
+      <p>Shop the biggest brands you know and love. Discover independent
+        brands making waves and the creators behind them. Whatever you're into,
+        find the item and the seller for you on Depop.
+      </p>
+      <%= link_to products_path do %>
+        <button class="btn btn--product btn--shop-now">Shop now</button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="home__narrative-card">
+    <div class="home__narrative-card-description">
+      <h2>Sell your way</h2>
+      <p>Sell a few items or build your empire.
+       Whatever your vibe we'll share our pro tips to help you get there. It's simple to get started.
+      </p>
+      <%= link_to new_product_path do %>
+        <button class="btn btn--product btn--shop-now">Sell on Depop</button>
+      <% end %>
+    </div>
+    <div class="home__narrative-card-img">
+      <%= image_tag("homepage-img-2.jpg", class: "home-img-2")%>
+    </div>
+  </div>
+
+  <div class="home__slogan">
+    <h1>Be part of the community that's transforming fashion one item at a time.</h1>
+  </div>
+
+
+
+
+
+</main>

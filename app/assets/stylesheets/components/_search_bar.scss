@@ -1,0 +1,22 @@
+.header__search {
+  width: 70rem;
+
+  &-bar {
+    width: 100%;
+  }
+}
+
+#search-bar {
+  height: 3.8rem;
+  border: black solid .2rem;
+  font-size: 1.4rem;
+
+  &:active {
+    border: yellow solid .2rem;
+    box-shadow: none;
+  }
+  &:focus {
+    border: yellow solid .2rem;
+    box-shadow: none;
+  }
+}

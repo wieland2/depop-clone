@@ -1,0 +1,54 @@
+<main class="orders_container">
+
+<h1>Purchased</h1>
+
+  <% if @orders.where(paid: true).empty?%>
+    <div class="empty-purchase-container">
+      <div class="empty-purchase-card">
+        <h3 style="margin-top: 20px">You haven't purchased any items yet</h3>
+          <%= link_to products_path do %>
+            <button class="purchase-explore-button">Explore</button>
+          <% end %>
+      </div>
+  <% else %>
+
+    <div class="order__details">
+      <span class="order__details-seller">Seller info</span>
+      <span class="order__details-date">Ordered on</span>
+      <span class="order__details-status">Status</span>
+      <span class="order__details-total">Total</span>
+    </div>
+
+
+    <% @orders.each do |order| %>
+      <%= link_to order_path(order) do %>
+        <div class="order">
+
+          <div class="order__img">
+              <%= cl_image_tag order.product.photo.key.to_s, height: 90, width: 90, crop: :fill, :radius=> 5 %>
+          </div>
+
+          <div class="order__product-seller">
+            <span class="order__product-seller-username">Item from <strong><%= "@#{order.product.user.username}" %></strong> </span>
+          </div>
+
+
+          <div class="order__date">
+          <% @date = order.created_at.to_s.split(" ")[0].split("-").reverse %>
+          <span class="order-product-text"><%= "#{@date[0]}/#{@date[1]}/#{@date[2]}" %></span>
+          </div>
+
+          <div class="order__status">
+            <span>Delivered</span>
+          </div>
+
+          <div class="order__price">
+            <span class="order__total"><strong><%= "£#{order.product.price.next_float.truncate(4)}" %></strong></span>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</main>

@@ -1,0 +1,65 @@
+<main class="user__wrapper" data-controller="review">
+
+  <div class="user">
+
+    <%= render "shared/user_description" %>
+    <%= render "shared/follows" %>
+    <%= render "shared/bio" %>
+
+    <nav class="user__products-tab">
+      <%= link_to user_path(@user) do %>
+        <span class="user__product-tab">All</span>
+      <% end %>
+      <%= link_to selling_user_path(@user)  do %>
+        <span class="user__product-tab">Selling</span>
+      <% end %>
+      <%= link_to sold_user_path(@user) do %>
+        <span class="user__product-tab">Sold</span>
+      <% end %>
+      <%= link_to likes_user_path(@user) do %>
+        <span class="user__product-tab">Likes</span>
+      <% end %>
+      <% if @user.id === current_user.id %>
+      <%= link_to bookmarks_user_path(@user) do %>
+        <span class="user__product-tab"><strong>Saved</strong></span>
+      <% end %>
+      <% end %>
+    </nav>
+
+
+    <div class="user__products" >
+      <% @user.bookmarks.each do |bookmark| %>
+        <% if bookmark.product.sold? %>
+
+          <div class="user__sold-products">
+            <%= link_to product_path(bookmark.product) do %>
+              <div class="user__sold-product-img">
+                <%= cl_image_tag bookmark.product.photo.key.to_s, height: 200, width: 200, crop: :fill %>
+              </div>
+              <div class="user__sold-card">
+                <div class="user__sold-sign">Sold</div>
+              </div>
+            <% end %>
+
+
+        <% else %>
+
+            <div class="user__selling-products">
+              <%= link_to product_path(bookmark.product) do %>
+                <div class="user__selling-card img-hover">
+                  <%= cl_image_tag bookmark.product.photo.key.to_s, height: 200, width: 200, crop: :fill%>
+                </div>
+              <% end %>
+
+        <% end %>
+              <div class="user__products-price">
+                <span class="user__products-value">£<%= bookmark.product.price %></span>
+              </div>
+            </div>
+      <% end %>
+          </div>
+    </div>
+
+  <%= render "shared/feedbacks" %>
+
+</main>

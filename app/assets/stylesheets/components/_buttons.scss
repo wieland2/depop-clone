@@ -1,0 +1,130 @@
+a:link,
+a:visited {
+  text-decoration: none;
+  color: $light-black;
+}
+
+
+
+a:active {
+  color: $light-black;
+}
+
+
+.btn--product:hover {
+  background-color: rgb(54, 54, 54);
+  color: white;
+}
+
+.btn {
+  border-radius: 0;
+  background-color: white;
+}
+
+
+
+.btn--like,
+.btn--unlike,
+.btn--bookmark,
+.btn--unbookmark {
+ border: none;
+ padding: 0;
+}
+
+.btn--like:active,
+.btn--unlike:active,
+.btn--bookmark:active,
+.btn--unbookmark:active {
+ border: none;
+ padding: 0;
+}
+
+
+
+
+.btn--product {
+  width: 100%;
+  padding: .6rem 0;
+  background-color: $light-black;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-radius: 0;
+
+}
+
+
+
+.btn--following {
+  width: 13rem;
+  background-color: rgb(38, 109, 28);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0;
+}
+
+.btn--follow {
+  width: 13rem;
+  background-color: rgb(41, 96, 175);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0;
+}
+
+
+.btn--follow:hover, .btn--follow:active {
+  background-color: rgb(41, 96, 175);
+  color: white;
+}
+
+.btn--following:hover {
+  background-color: rgb(38, 109, 28);
+  color: white;
+}
+
+.btn--following:active {
+  background-color: rgb(38, 109, 28);
+  border: solid .1rem yellow;
+  color: white;
+}
+
+
+
+.btn--banner {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: rgb(253, 253, 253);
+  border: solid .2rem $black;
+
+
+  &:hover {
+    background-color: rgb(241, 241, 241);
+    border: solid .2rem $black;
+  }
+
+  &:active {
+    background-color: rgb(241, 241, 241);
+  }
+}
+
+.btn--shop-now {
+  width: 30%;
+}
+
+.btn.btn--login {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.btn.btn--sign-up {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: $light-black;
+  color: white;
+  border-radius: 0;
+  padding: .5rem 1rem;
+}

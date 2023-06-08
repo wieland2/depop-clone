@@ -1,0 +1,7 @@
+<% if @user.bio.present? %>
+<div class="user__bio">
+  </p><% @user.bio.split("\n").each do |t| %></p>
+    <%= t %>
+  <% end %>
+</div>
+<% end %>

@@ -1,0 +1,73 @@
+.new__product {
+  max-width: 60rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+
+
+  .form-label {
+    font-weight: 400;
+    color: $gray;
+    font-size: 1.4rem;
+  }
+
+  abbr {
+    display: none;
+  }
+
+  h1 {
+    border-bottom: $border-bottom;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    color: black;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+  }
+
+  form-control.text.required {
+    white-space: pre-line;
+  }
+}
+
+.new__product-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.product-input {
+  height: 4.5rem;
+  border: black solid .1rem;
+  font-size: 1.4rem;
+
+
+  &:focus {
+    border: yellow solid .4rem;
+    box-shadow: none;
+  }
+
+  &--colour, &--style {
+    .ts-control {
+      border: none;
+    }
+  }
+
+  &--description {
+    height: 11rem;
+
+
+    &:focus {
+      border: $light-black solid .2rem;
+    }
+  }
+
+   option {
+    font-size: 1.5rem;
+  }
+
+}

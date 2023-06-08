@@ -1,0 +1,118 @@
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  width: 400px;
+}
+
+.card-logo {
+  margin-bottom: 20px;
+}
+
+.card-logo img {
+  width: 100px;
+}
+
+.card-number, .card-name, .card-expiry, .card-cvv {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card-number label, .card-name label, .card-expiry label, .card-cvv label {
+  width: 100%;
+  font-weight: bold;
+}
+
+.card-number input, .card-name input, .card-expiry input, .card-cvv input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.card-number input:focus, .card-name input:focus, .card-expiry input:focus, .card-cvv input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+
+
+
+.pay-container {
+  display: flex;
+  margin-top: 200px;
+  justify-content: center;
+}
+
+
+
+.pay-card {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  padding: 20px;
+  border: solid thin rgb(149, 149, 149);
+}
+
+
+
+.pay__container {
+  max-width: 100rem;
+  margin: 0 auto;
+  display: flex;
+  gap: 5rem;
+}
+
+.pay__actions {
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.pay__order-details {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.pay__shipping-address {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.pay__shipping-address,
+.pay__seller-details, .pay__payment-type, .pay__order-summary {
+  padding: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0rem .7rem 2.9rem 0rem;
+  border-radius: 1rem;
+}
+
+.pay__seller-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pay__seller-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pay__payment-type {
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

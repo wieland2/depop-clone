@@ -1,0 +1,28 @@
+{
+  "name": "depop-clone",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.8",
+    "@rails/webpacker": "^5.4.4",
+    "bootstrap": "^5.2.3",
+    "star-rating.js": "^4.3.0",
+    "tom-select": "^2.2.2",
+    "webpack": "^5.84.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

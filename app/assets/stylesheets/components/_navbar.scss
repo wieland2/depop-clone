@@ -1,0 +1,77 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  padding: 0 4.3rem;
+  border-bottom: solid thin $gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 50rem;
+  right: 0;
+  background-color: white;
+  z-index: 1000;
+}
+
+.main-nav-list {
+  list-style: none;
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+}
+
+.main-nav-list-logged-out {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dropdown-menu {
+
+  padding: 0;
+
+  a {
+    font-size: 1.6rem;
+    padding: 1rem 8rem 1rem 1rem;
+  }
+}
+
+.dropdown-item {
+
+  &:hover {
+    background-color: $blue;
+    color: $white;
+  }
+
+}
+
+.logo {
+  width: 9rem;
+}
+
+.nav-item--sell {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.nav-item--bag {
+  position: relative;
+}
+
+.bag-count {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  background-color: red;
+  color: white;
+  font-style: bold;
+  font-size: 1rem;
+}

@@ -1,0 +1,47 @@
+<div class="new__product">
+
+  <h1>List an item</h1>
+  <div class="new__product-img">
+    <%= simple_form_for @product,  html: {data: {controller: "photo-preview"}} do |f| %>
+    <h2>Upload a photo</h2>
+    <span> Upload a photo in JPEG or PNG format</span>
+      <div class="new__product-preview-image-card">
+        <%= image_tag "", width: 300,  class: "hidden", data: { photo_preview_target: "preview"} %>
+          <div class="new__product-camera-icon">
+            <span>Add a photo</span>
+          </div>
+      </div>
+    <%= f.input :photo, as: :file, input_html: { class: 'd-none', data: { photo_preview_target: "input", action:"change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo'%>
+  </div>
+
+  <div class="new__product-inputs">
+    <div>
+      <%= f.input :title, input_html: {class: "product-input product-input--title"}, hint: "Enter a title for you item"  %>
+      <%= f.input :description, input_html: { class: "product-input product-input--description"}, placeholder: "70s Hippie flare jeans Patched by Insane Collective One of a kind Filled with vintage fabrics And embroidered patches..." %>
+    </div>
+
+    <div class="new_product-info">
+      <h2>Info</h2>
+      <%= f.input :size, input_html: {class: "product-input product-input--size"} %>
+      <%= f.input :category, collection: ["Tops", "T-shirts", "Bottoms", "Coats", "Jackets", "Jeans", "Jumpsuits", "Suits", "Dresses", "Footwear", "Accessories"], input_html: {class: "product-input product-input--category"}  %>
+      <%= f.input :brand, input_html: {class: "product-input product-input--brand"} %>
+      <%= f.input :condition, collection: ["Brand New", "Like New", "Used-Excellent", "Used-Good", "Used-Fair"], input_html: {class: "product-input product-input--condition"}  %>
+    </div>
+
+    <div class="new_product-enhance">
+      <h2>Enhance your listing</h2>
+      <%= f.input :colours, collection: ["🔵 Blue","🟤 Brown","🟡 Gold","🔴 Red","🟠 Orange","⚪ White","🟣 Purple","🟡 Yellow","⚪️ Silver","⚫ Black","🟢 Green"], input_html: {multiple: true, class: "product-input product-input--colour", data: {controller: "tom-select", tom_select_options_value: {tags: true}}}, hint: "Select up to two colours" %>
+      <%= f.input :styles, collection: ["Casual", "Sportwear", "Vintage", "Denim", "Grunge", "Sportswear", "Streetwear", "Loungewear", "Emo", "90s", "Skater", "Rave", "Glam"], input_html: {multiple: true, class: "product-input  product-input--style" , data: {controller: "tom-select"}}, hint: "Pick relevant tags to describe this item's style. Add up to 3" %>
+    </div>
+    <div>
+      <%= f.input :gender, collection: ["Male", "Female", "Unisex"], input_html: {class: "product-input product-input--gender"}  %>
+      <%= f.input :price, input_html: {class: "product-input product-input--price"} %>
+      <%= f.input :country, as: :text,  input_html: {class: "product-input product-input--country"} %>
+      <%= f.input :city, input_html: {class: "product-input product-input--city"} %>
+      <%= f.input :shipping, input_html: {class: "product-input product-input--shipping"}, hint: "Products with free shipping have a higher chance of selling"  %>
+      <%= f.submit "Post", {class: "btn btn--product btn--post"} %>
+    </div>
+  </div>
+  <% end %>
+
+</div>

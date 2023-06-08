@@ -1,0 +1,94 @@
+
+<main class="bag">
+
+  <% if @purchases.empty? %>
+
+    <div class="bag__empty">
+      <div class="empty-divs">
+        <div class="empty-div"></div>
+        <div class="empty-div"></div>
+        <div class="empty-div"></div>
+        <div class="empty-div"></div>
+        <div class="empty-div"></div>
+        <div class="empty-div"></div>
+      </div>
+      <div class="bag__empty-sign">
+        <h3>Your bag is empty</h3>
+        <span>But not for long</span>
+          <%= link_to products_path do %>
+            <button class="btn btn--product btn--explore">Explore</button>
+          <% end %>
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="bag__item-container">
+      <% @purchases.each do |purchase| %>
+        <div class="bag__item-card">
+          <div class="bag__item-seller-box">
+            <div class="bag__item-seller-details">
+              <div class="bag__item-seller-img">
+                <%= link_to user_path(purchase.product.user) do %>
+                  <%= cl_image_tag purchase.product.user.photo.key.to_s,:transformation=>[{:gravity=>"face", :height=>40, :width=>40}, {:radius=>"max"},{:width=>40, :crop=>"scale"},{:fetch_format=>:auto}]%>
+                <% end %>
+              </div>
+              <div class="bag__item-seller">
+                <span class="bag__item-seller-name"><%= purchase.product.user.first_name%><%= purchase.product.user.last_name%></span>
+                <span class="bag__item-seller-username">@<%= purchase.product.user.username%></span>
+              </div>
+            </div>
+
+            <div class="bag__item-info">
+              <div class="bag__item-img">
+                <%= link_to product_path(purchase.product) do %>
+                  <%= cl_image_tag purchase.product.photo.key.to_s, height: 140, width: 140, crop: :fill %>
+                <% end %>
+              </div>
+
+              <div class="bag__item-description">
+                <span class="bag__item-title"><%= purchase.product.title %></span>
+                <span class="bag__item-price">£<%= purchase.product.price%></span>
+                <span class="bag__item-size"><%= purchase.product.size %></span>
+                <%= link_to purchase_path(purchase), data: {turbo_method: :delete} do%>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--trash">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                  </svg>
+                <% end %>
+              </div>
+
+              <div class="bag__total">
+                <table class="bag__stats">
+                  <tr>
+                    <th>Item <br> <span> Tax included </span> <br></th>
+                    <th>£<%= purchase.product.price%></th>
+                  </tr>
+                  <tr>
+                    <th>Estimated shipping</th>
+                    <th>£<%= purchase.product.shipping %></th>
+                  </tr>
+                  <tr>
+                    <th>Total</th>
+                    <th>£<%= purchase.product.price + purchase.product.shipping %></th>
+                  </tr>
+                </table>
+
+                <div class="bag__checkout">
+                  <%= simple_form_for [purchase.product, @order] do |f| %>
+                  <%= f.input :product_id, :as => :hidden, :input_html => { :value => purchase.product.id} %>
+                  <%= f.submit "Checkout item", {class: "btn btn--product btn--checkout"} %>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+
+</main>

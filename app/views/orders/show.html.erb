@@ -1,0 +1,169 @@
+<body id="orders__body">
+
+
+<main class="orders_container"  data-controller="feedback">
+
+    <h1>Purchased</h1>
+
+    <div class="order__details">
+      <span class="order__details-seller">Seller info</span>
+      <span class="order__details-date">Ordered on</span>
+      <span class="order__details-status">Status</span>
+      <span class="order__details-total">Total</span>
+    </div>
+
+
+    <% @orders.each do |order| %>
+        <div class="order show">
+
+          <div class="order__img">
+              <%= cl_image_tag order.product.photo.key.to_s, height: 90, width: 90, crop: :fill, :radius=> 5%>
+          </div>
+
+          <div class="order__product-seller">
+            <span class="order__product-seller-username">Item from <strong><%= "@#{order.product.user.username}" %></strong> </span>
+          </div>
+
+          <div class="order__date">
+          <% @date = order.created_at.to_s.split(" ")[0].split("-").reverse %>
+          <span class="order-product-text"><%= "#{@date[0]}/#{@date[1]}/#{@date[2]}" %></span>
+          </div>
+
+          <div class="order__status">
+            <span>Delivered</span>
+          </div>
+
+          <div class="order__price">
+            <span class="order__total"><strong><%= "£#{order.product.price.next_float.truncate(4)}" %></strong></span>
+          </div>
+
+        </div>
+
+
+    <% end %>
+
+  <div class="order__stats">
+    <div class="order__stats-close">
+      <%= link_to orders_path do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon-cross">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      <% end %>
+    </div>
+    <div class="order__stats-seller">
+      <div class="order__stats-seller-img">
+        <%= cl_image_tag @order.product.user.photo.key.to_s, :transformation=>[{:gravity=>"face", :height=>60, :width=>60},
+            {:radius=>"max"},{:width=>60, :crop=>"scale"},{:fetch_format=>:auto}] %>
+      </div>
+      <div class="order__stats-seller-details">
+        <span class="order__stats-seller-name"><%= "#{@order.product.user.first_name} #{@order.product.user.last_name}"%></span>
+        <span class="order__stats-seller-username"><%= "@#{@order.product.user.username}" %></span>
+      </div>
+    </div>
+    <div class="order__stats-time">
+      <span><strong>1 item purchased</strong></span>
+      <% @date = @order.created_at.to_s.split(" ")[0].split("-").reverse %>
+      <span class="order__stats-date"><%= "Ordered on #{@date[0]}/#{@date[1]}/#{@date[2]}" %></span>
+    </div>
+    <div class="order__stats-info">
+      <%= cl_image_tag @order.product.photo.key.to_s, height: 80, width: 80, crop: :fill, :radius=> 5 %>
+      <span class="order__stats-description"><%= @order.product.description %></span>
+    </div>
+    <div class="order__stats-status">
+      <span><strong>Status</strong></span>
+      <span>Delivered</span>
+    </div>
+    <div class="order__stats-delivery">
+      <div class="order__stats-checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--checkmark">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <span><strong>Delivered on</strong></span>
+      <span class="order__stats-date"><%= "#{@date[0]}/#{@date[1]}/#{@date[2]}" %></span>
+      <span><strong> Shipped to</strong></span>
+      <div class="order__stats-home">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--home">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </div>
+    </div>
+    <div class="order__stats-payment">
+      <div class="order__stats-checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--checkmark">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <span><strong>Payment sent</strong></span>
+      <table class="order__stats-price">
+        <tr>
+          <th>Item Price</th>
+          <th>£<%= @order.product.price%></th>
+        </tr>
+        <tr>
+          <th>Shipping</th>
+          <th>£<%= @order.product.shipping %></th>
+        </tr>
+        <tr>
+          <th><strong>Total</strong></th>
+          <th><strong>£<%= @order.product.price + @order.product.shipping %></strong></th>
+        </tr>
+      </table>
+    </div>
+    <% if @order.review.nil? %>
+    <div class="order__stats-new-feedback">
+      <button class="btn btn--product btn--feedback" data-feedback-target="newReview">Leave your feedback</button>
+    </div>
+    <% else %>
+    <div class="order__stats-feedback">
+      <div class="order__stats-checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--checkmark">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <span>Your Feedback for the seller</span>
+      <% if @order.review.rating ===  1  %>
+        <%= render "shared/star_rating_1" %>
+      <% elsif @order.review.rating === 2 %>
+        <%= render "shared/star_rating_2" %>
+      <% elsif @order.review.rating === 3 %>
+        <%= render "shared/star_rating_3" %>
+      <% elsif @order.review.rating === 4%>
+        <%= render "shared/star_rating_4" %>
+      <% else %>
+        <%= render "shared/star_rating_5" %>
+      <% end %>
+      <span class="order__stats-feedback-content"><%= @order.review.content %></span>
+    </div>
+    <% end %>
+  </div>
+
+
+  <div class="review d-none">
+    <%= link_to order_path(@order) do %>
+      <div class="close-review">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon-cross icon--close">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+    <% end %>
+    <h2>Leave <%= "@#{@order.product.user.username}" %> some feedback </h2>
+    <div class="order__stats-info">
+      <%= cl_image_tag @order.product.photo.key.to_s, height: 80, width: 80, crop: :fill, :radius=> 5 %>
+      <span class="order__stats-description"><%= @order.product.description %></span>
+    </div>
+    <%= simple_form_for [@order, @review] do |f| %>
+    <div><%= f.input :content,  input_html: {class: "new__review-content"},label: false, placeholder: 'Write your review here...' %></div>
+    <div><%= f.input :rating, collection: (1..5).to_a, label: "Rate your item", input_html: {data: {controller: "star-rating"}} %></div>
+    <div><%= f.submit "Post feedback", class: "btn btn--product btn--review" %></div>
+    <% end %>
+  </div>
+
+
+
+
+
+
+</main>
+
+</body>

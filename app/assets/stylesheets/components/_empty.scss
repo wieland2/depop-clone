@@ -1,0 +1,31 @@
+.empty-divs {
+  display: flex;
+  gap: 1rem;
+  max-width: 100rem;
+  margin: 5rem auto;
+}
+
+.empty-div {
+  width: 20rem;
+  height: 15rem;
+  background-color: $light-gray;
+}
+
+.bag__empty-sign {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 4rem;
+  text-align: center;
+}
+
+.bag__empty {
+  position: relative;
+}

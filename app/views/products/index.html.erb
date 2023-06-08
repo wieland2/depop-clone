@@ -1,0 +1,50 @@
+
+
+<main class="products">
+  <% if params[:query] != "" && params[:query] != nil %>
+    <div class="products__query-card">
+      <div class="query-card">
+        <h3> Search for "<%= params[:query].capitalize %>"</h3>
+      </div>
+    </div>
+  <% else %>
+  <% end %>
+
+  <section class="products-grid">
+    <% @products.where(sold: false).each do |product| %>
+      <figure class="products">
+        <div class="products__img">
+          <%= link_to product_path(product) do %>
+            <%= cl_image_tag product.photo.key, height: 300, width: 300, crop: :fill%>
+          <% end %>
+          <div class="product__likes product__likes-absolute">
+            <% if product.likes.empty? %>
+              <div class="product__like">
+                <%= form_with model: [product, @like] do |f| %>
+                <%= f.button '', {class: 'btn btn--like'} do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--like icon--white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+                <% end %>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="product__unlike">
+                <%= link_to like_path(product.likes.last), class: "btn btn--unlike",  data: {turbo_method: :delete} do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon icon--unlike icon--transparent">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="products__description">
+          <span class="products__price"><%= "£#{product.price}" %></span>
+          <span class="products__size"><%= product.size %></span>
+        </div>
+      </figure>
+    <% end %>
+  </section>
+
+
+</main>

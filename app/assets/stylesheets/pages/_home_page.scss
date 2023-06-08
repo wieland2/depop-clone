@@ -1,0 +1,182 @@
+.home {
+  max-width: 110.8rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  &__banner {
+    position: relative;
+
+
+    &-button {
+      display: block;
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+
+.home__recently-added {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  &-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+
+    a {
+      color: rgb(72, 117, 241);
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+    }
+  }
+
+  &-products {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  &-product {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+    &-details {
+      display: flex;
+      flex-direction: column;
+      padding: 0 .5rem;
+    }
+  }
+}
+
+.home__festival {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  &-products {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &-product {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+
+    span {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+  }
+
+}
+
+.home__depop-edition {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  &-heading {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &-products {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  &-product {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+    &-details {
+      display: flex;
+      flex-direction: column;
+      padding: 0 .5rem;
+    }
+  }
+}
+
+
+.home__top-searches {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  &-products {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  &-product {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+     span {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+}
+
+
+.home__narrative-card {
+  display: flex;
+  gap: 15rem;
+  align-items: center;
+
+  &-description {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    p {
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+  }
+
+}
+
+
+.home__slogan {
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-weight: 700;
+    font-size: 3rem;
+  }
+}

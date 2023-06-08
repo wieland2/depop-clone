@@ -1,0 +1,60 @@
+.form__login {
+  width: 50rem;
+  margin: 20rem auto;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .form-control{
+    height: 3.3rem;
+    font-size: 1.4rem;
+  }
+
+  abbr {
+    display: none;
+  }
+
+
+}
+
+.form-password {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+}
+
+.sign__up-names {
+  display: flex;
+  gap: 5rem;
+
+   .form-control {
+    width: 22.5rem;
+   }
+}
+
+.form__user-settings {
+
+  width: 50rem;
+  margin-top: 2rem;
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .form-control{
+    height: 3.3rem;
+    font-size: 1.4rem;
+  }
+
+  abbr {
+    display: none;
+  }
+
+}

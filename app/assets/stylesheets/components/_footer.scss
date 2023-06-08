@@ -1,0 +1,36 @@
+
+
+.footer {
+  display: flex;
+  align-items: center;
+  height: 5vh;
+  background-color: white;
+  border-top: $border-bottom;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  justify-content: space-between;
+  padding: 0 2rem;
+
+  &__links {
+    display: flex;
+    font-size: 1.6rem;
+    gap: 1rem;
+    margin-bottom: 0;
+    padding: 0;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: 2rem;
+
+    .icon--footer {
+      font-size: 5rem;
+    }
+  }
+}

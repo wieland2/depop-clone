@@ -1,0 +1,26 @@
+<div class="user__follows">
+    <div class="user__follows-count">
+      <%= link_to followers_user_path(@user) do %>
+        <span class="user__followers-count" ><%= @user.followers.count %> Followers</span>
+      <% end %>
+      <%= link_to following_user_path(@user) do %>
+        <span class="user__followings-count"><%= @user.following.count %> Following</span>
+      <% end %>
+    </div>
+    <% if @user.id != current_user.id %>
+      <div class="user__follow__stats">
+        <% if Follow.where(follower_id: current_user.id, following_id: @user.id).exists?  %>
+          <% @follow = Follow.find_by(follower_id: current_user.id, following_id: @user.id) %>
+            <%= link_to follow_path(@follow), data: {turbo_method: :delete} do %>
+              <button class="btn btn--following">Following</button>
+            <% end %>
+        <% else %>
+             <%= simple_form_for @follow do |f| %>
+              <%= f.input :following_id, :as => :hidden, :input_html => { :value => @user.id } %>
+              <%= f.submit "Follow", {class:"btn btn--follow"} %>
+              <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+</div>

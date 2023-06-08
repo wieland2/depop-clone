@@ -1,0 +1,45 @@
+
+
+
+<div class="user__profile">
+  <div class="user__img">
+    <%= link_to user_path(@user) do %>
+      <%= cl_image_tag @user.photo.key.to_s, :transformation=>[{:gravity=>"face", :height=>100, :width=>100},
+          {:radius=>"max"},{:width=>100, :crop=>"scale"},{:fetch_format=>:auto}] %>
+      <% end %>
+  </div>
+  <div class="user__description-box">
+    <span class="user__name"><%= @user.first_name %> <%= @user.last_name%></span>
+    <span class="user__username">@<%=@user.username %></span>
+    <div class="user__ratings" data-review-target="content">
+      <% ratings = [] %>
+      <% @user.reviewers.uniq.each do |reviewer| %>
+      <% reviewer.orders.each do |order| %>
+      <% if order.review != nil %>
+      <% ratings << order.review.rating %>
+      <% end %>
+      <% end %>
+      <% end %>
+
+      <% if ratings.sum === 0 %>
+      <%= render "shared/star_rating_0" %>
+      <% else %>
+      <% average = ratings.sum / ratings.length %>
+      <% if average <= 1  %>
+      <%= render "shared/star_rating_1" %>
+      <% elsif average > 1 && average <= 2 %>
+      <%= render "shared/star_rating_2" %>
+      <% elsif average > 2 && average <= 3 %>
+      <%= render "shared/star_rating_3" %>
+      <% elsif average > 3 && average <= 4 %>
+      <%= render "shared/star_rating_4" %>
+      <% else %>
+      <%= render "shared/star_rating_5" %>
+      <% end %>
+      <% end %>
+      <span class="user__ratings-count"><%= "(#{ratings.count })" %></span>
+    </div>
+    <%= render "shared/activity" %>
+  </div>
+</div>
+

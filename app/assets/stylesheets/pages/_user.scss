@@ -1,0 +1,97 @@
+.user {
+  max-width: 128rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
+}
+
+
+.user__profile {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.user__description-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.user__name{
+  font-size: 2rem;
+    font-weight: 900;
+    color: black;
+    letter-spacing: .3rem;
+}
+
+
+.user__username {
+  margin-bottom: 0.2rem;
+  margin-top: -0.5rem
+}
+
+.user__follows {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  &-count {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}
+
+.user__products-tab {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+}
+
+.user__ratings {
+  display: flex;
+  align-items: center;
+  margin-top: -.4rem;
+  margin-bottom: .8rem;
+  gap: .2rem;
+  cursor: pointer;
+}
+
+
+.user__follower-card-info {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+
+.user__follower-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user__follower-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user__follows {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  height: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.user__bio {
+  font-size: 1.3rem;
+
+  p {
+    margin-bottom: .1rem;
+  }
+}
