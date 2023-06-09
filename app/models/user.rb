@@ -15,7 +15,6 @@ has_many :orders, dependent: :destroy
 has_many :reviews, dependent: :destroy
 validates :first_name, :last_name, presence: true
 
-
 has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
 has_many :followers, through: :follower_relationships, source: :follower
 

@@ -1,16 +1,31 @@
 <main class="orders_container">
 
-<h1>Purchased</h1>
+
 
   <% if @orders.where(paid: true).empty?%>
-    <div class="empty-purchase-container">
-      <div class="empty-purchase-card">
-        <h3 style="margin-top: 20px">You haven't purchased any items yet</h3>
+
+
+    <div class="empty__container">
+      <div class="empty__divs">
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+      </div>
+      <div class="empty__sign">
+        <h3>You haven't purchased anything yet</h3>
+        <span>But not for long...</span>
           <%= link_to products_path do %>
-            <button class="purchase-explore-button">Explore</button>
+            <button class="btn btn--product btn--explore">Explore</button>
           <% end %>
       </div>
+    </div>
+
   <% else %>
+
+  <h1>Purchased</h1>
 
     <div class="order__details">
       <span class="order__details-seller">Seller info</span>

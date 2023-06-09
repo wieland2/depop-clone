@@ -4,21 +4,24 @@ a:visited {
   color: $light-black;
 }
 
-
-
 a:active {
   color: $light-black;
 }
 
 
-.btn--product:hover {
-  background-color: rgb(54, 54, 54);
-  color: white;
-}
-
 .btn {
+  width: 100%;
+  padding: .6rem 0;
+  background-color: $light-black;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
   border-radius: 0;
-  background-color: white;
+
+  &:hover {
+    background-color: rgb(54, 54, 54);
+    color: white;
+  }
 }
 
 
@@ -29,6 +32,7 @@ a:active {
 .btn--unbookmark {
  border: none;
  padding: 0;
+ background-color: transparent;
 }
 
 .btn--like:active,
@@ -40,17 +44,30 @@ a:active {
 }
 
 
+.btn--like:hover,
+.btn--unlike:hover,
+.btn--bookmark:hover,
+.btn--unbookmark:hover {
+ border: none;
+ padding: 0;
+ background-color: transparent;
+}
 
 
-.btn--product {
-  width: 100%;
-  padding: .6rem 0;
-  background-color: $light-black;
+
+
+.btn--follow {
+  width: 13rem;
+  background-color: rgb(41, 96, 175);
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  border-radius: 0;
+  padding: 0;
 
+  &:hover, :active {
+    background-color: rgb(41, 96, 175);
+    color: white;
+  }
 }
 
 
@@ -62,33 +79,21 @@ a:active {
   font-size: 1.3rem;
   font-weight: bold;
   padding: 0;
+
+  &:hover {
+    background-color: rgb(38, 109, 28);
+    color: white;
+  }
+
+  &:active {
+    background-color: rgb(38, 109, 28);
+    border: solid .1rem yellow;
+    color: white;
+  }
+
 }
 
-.btn--follow {
-  width: 13rem;
-  background-color: rgb(41, 96, 175);
-  color: white;
-  font-size: 1.3rem;
-  font-weight: bold;
-  padding: 0;
-}
 
-
-.btn--follow:hover, .btn--follow:active {
-  background-color: rgb(41, 96, 175);
-  color: white;
-}
-
-.btn--following:hover {
-  background-color: rgb(38, 109, 28);
-  color: white;
-}
-
-.btn--following:active {
-  background-color: rgb(38, 109, 28);
-  border: solid .1rem yellow;
-  color: white;
-}
 
 
 
@@ -96,16 +101,19 @@ a:active {
   padding: 1rem 2rem;
   font-size: 1.5rem;
   background-color: rgb(253, 253, 253);
-  border: solid .2rem $black;
+  border: solid .2rem black;
+  color: black;
 
 
   &:hover {
     background-color: rgb(241, 241, 241);
     border: solid .2rem $black;
+    color: black;
   }
 
   &:active {
     background-color: rgb(241, 241, 241);
+    color: black;
   }
 }
 
@@ -113,14 +121,21 @@ a:active {
   width: 30%;
 }
 
-.btn.btn--login {
+.btn--login {
   font-size: 1.6rem;
   font-weight: bold;
   padding: 0;
   margin: 0;
+  color: black;
+  background-color: white;
+
+  &:hover {
+    background-color: transparent;
+    color: black;
+  }
 }
 
-.btn.btn--sign-up {
+.btn--sign-up {
   font-size: 1.5rem;
   font-weight: bold;
   background-color: $light-black;

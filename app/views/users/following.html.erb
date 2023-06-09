@@ -21,9 +21,13 @@
             <div class="user__follower-card-info">
               <div class="user__follower-img">
                 <%= link_to user_path(following) do %>
-                  <%= cl_image_tag following.photo.key.to_s, :transformation=>[{:gravity=>"face", :height=>65, :width=>65},
+                  <% if following.photo.attached? %>
+                    <%= cl_image_tag following.photo.key.to_s, :transformation=>[{:gravity=>"face", :height=>65, :width=>65},
                       {:radius=>"max"},{:width=>65, :crop=>"scale"},{:fetch_format=>:auto}] %>
-               <% end %>
+                  <% else %>
+                    <%= image_tag("avatar_image.png", :height=>65, :width=>65, class: "radius") %>
+                  <% end %>
+                  <% end %>
               </div>
                 <div class="user__follower-details">
                   <span class="user__follower-name"><%= "#{following.first_name} #{following.last_name}" %></span>

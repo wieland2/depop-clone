@@ -3,16 +3,16 @@
 
   <% if @purchases.empty? %>
 
-    <div class="bag__empty">
-      <div class="empty-divs">
-        <div class="empty-div"></div>
-        <div class="empty-div"></div>
-        <div class="empty-div"></div>
-        <div class="empty-div"></div>
-        <div class="empty-div"></div>
-        <div class="empty-div"></div>
+    <div class="empty__container">
+      <div class="empty__divs">
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
+        <div class="empty__div"></div>
       </div>
-      <div class="bag__empty-sign">
+      <div class="empty__sign">
         <h3>Your bag is empty</h3>
         <span>But not for long</span>
           <%= link_to products_path do %>
@@ -30,7 +30,11 @@
             <div class="bag__item-seller-details">
               <div class="bag__item-seller-img">
                 <%= link_to user_path(purchase.product.user) do %>
+                  <% if purchase.product.user.photo.attached? %>
                   <%= cl_image_tag purchase.product.user.photo.key.to_s,:transformation=>[{:gravity=>"face", :height=>40, :width=>40}, {:radius=>"max"},{:width=>40, :crop=>"scale"},{:fetch_format=>:auto}]%>
+                  <% else %>
+                    <%= image_tag("avatar_image.png", :height=>40, :width=>40, class: "radius") %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="bag__item-seller">
