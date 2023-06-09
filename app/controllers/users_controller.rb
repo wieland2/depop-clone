@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-
-
   def show
     @user = User.find(params[:id])
     @products = Product.where(user_id: params[:id])
@@ -9,7 +7,7 @@ class UsersController < ApplicationController
     @followers = Follow.where(following_id: params[:id])
     @following = Follow.where(follower_id: params[:id])
     @reviews = Review.all
-  
+
   end
 
   def sold
